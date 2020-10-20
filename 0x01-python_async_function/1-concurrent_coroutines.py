@@ -5,10 +5,11 @@
 """
 import asyncio
 from typing import List
+
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(max_delay, n) -> List[float]:
+async def wait_n(max_delay: int, n: int) -> List[float]:
     """
     an asynchronous coroutine that takes in an integer argument (max_delay,
     with a default value of 10) named wait_random that waits for a random
