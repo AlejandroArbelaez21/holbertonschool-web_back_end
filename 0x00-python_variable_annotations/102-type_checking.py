@@ -7,6 +7,9 @@ from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """
+    A function which returns a factor of a Tuple.
+    """
     zoomed_in: List = [
         item for item in lst
         for i in range(factor)
