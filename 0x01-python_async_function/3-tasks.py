@@ -13,4 +13,4 @@ def task_wait_random(max_delay: int):
     """
     function that measures the total execution time
     """
-    return asyncio.create_task(wait_random())
+    return asyncio.create_task(wait_random(max_delay))
