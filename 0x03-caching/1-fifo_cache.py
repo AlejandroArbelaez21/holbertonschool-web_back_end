@@ -17,12 +17,14 @@ class FIFOCache(BaseCaching):
         """ assign to the dictionary the item value for the key key """
         if key and item:
             self.cache_data[key] = item
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                list_k = []
-                for k in self.cache_data.keys():
-                    list_k.append(k)
-                print("DISCARD: {}".format(list_k[0]))
-                del self.cache_data[list_k[0]]
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            list_k = []
+            for k in self.cache_data.keys():
+                list_k.append(k)
+                delete = list_k[0]
+            del self.cache_data[delete]
+            print("DISCARD: {}".format(delete))
+            
 
     def get(self, key):
         """ return the value in self.cache_data linked to key """
