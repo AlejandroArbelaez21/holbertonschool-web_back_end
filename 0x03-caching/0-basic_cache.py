@@ -4,13 +4,14 @@
 
 from base_caching import BaseCaching
 
+
 class BasicCache(BaseCaching):
     """ BasicCache defines two functions:
       - put
       - get
     """
     def put(self, key, item):
-        """ assign to the dictionary self.cache_data the item value for the key key """
+        """ assign to the dictionary the item value for the key key """
         if key and item:
             self.cache_data[key] = item
 
