@@ -27,3 +27,4 @@ class MRUCache(BaseCaching):
     def get(self, key):
         """ return the value in self.cache_data linked to key """
         return self.cache_data.get(key)
+    
