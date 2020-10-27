@@ -13,14 +13,14 @@ class LRUCache(BaseCaching):
     def __init__(self):
         """ Constructor """
         super().__init__()
+        self.cache_data = collections.OrderedDict()
 
     def put(self, key, item):
         """ assign to the dictionary the item value for the key key """
         if key and item:
             self.cache_data[key] = item
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                sorted_dict_keys = sorted(self.cache_data)
-                last = sorted_dict_keys.popitem(last=False)
+                last = self.cache_data.popitem(last=False)
                 print('DISCARD: {}'.format(last[0]))
 
     def get(self, key):
