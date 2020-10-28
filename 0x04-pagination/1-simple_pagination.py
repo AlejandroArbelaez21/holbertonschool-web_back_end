@@ -41,6 +41,7 @@ class Server:
         page with default value 1 and page_size with default value 10.
         """
         assert type(page) == int and type(page_size) == int
+        assert type(page) == int or type(page_size) == int
         assert page > 0 and page_size > 0
         self.dataset()
         index = index_range(page, page_size)
