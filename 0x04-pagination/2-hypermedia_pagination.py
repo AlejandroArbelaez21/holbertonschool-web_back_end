@@ -49,13 +49,16 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """ Implement a get_hyper method that takes the same arguments
             (and defaults) as get_page and returns a dictionary
-        """ 
+        """
+        get = self.get_page(page, page_size)
+        p = self.__dataset
+        p_size = page_size
         my_dict = {
-            'page_size': len(self.get_page(page, page_size)),
+            'page_size': len(get),
             'page': page,
-            'data': self.get_page(page, page_size),
-            'next_page': page + 1 if (page + 1) < len(self.__dataset) / page_size else None,
+            'data': get,
+            'next_page': page + 1 if (page + 1) < (len(p) / p_size) else None,
             'prev_page': page - 1 if (page - 1) > 0 else None,
-            'total_pages': math.ceil(len(self.__dataset) / page_size)
+            'total_pages': math.ceil(len(p) / page_size)
         }
         return my_dict
