@@ -34,6 +34,7 @@ def view_one_user(user_id: str = None) -> str:
         abort(404)
     return jsonify(user.to_json())
 
+
 @app_views.route('/users/me', methods=['GET'], strict_slashes=False)
 def me() -> str:
     """ GET /api/v1/users/me
