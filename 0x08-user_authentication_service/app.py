@@ -2,7 +2,10 @@
 """
 Basic Flask app
 """
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+from auth import Auth
+
+AUTH = Auth()
 app = Flask(__name__)
 
 
@@ -14,6 +17,18 @@ def welcome():
     """
     return jsonify({"message": "Bienvenue"})
 
+
+@app.route('/users', methods=['POST'])
+def users():
+    """ the end-point should register it and respond with a JSON payload """
+    email = request.form['email']
+    password = request.form['password']
+    try:
+        user = AUTH.register_user(email, password)
+        return jsonify({"email": "{}".format(user.email),
+                        "message": "user created"})
+    except ValueError:
+        return jsonify({"message": "email already registered"}), 400
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
