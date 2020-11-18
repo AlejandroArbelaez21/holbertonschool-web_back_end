@@ -12,6 +12,7 @@ from user import Base, User
 class DB:
     """ class DB """
     def __init__(self):
+        """ Init """
         self._engine = create_engine("sqlite:///a.db", echo=True)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
