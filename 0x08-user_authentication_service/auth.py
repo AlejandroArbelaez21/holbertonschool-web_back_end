@@ -13,6 +13,7 @@ def _hash_password(password: str) -> str:
     password = bytes(password, 'utf-8')
     return bcrypt.hashpw(password, bcrypt.gensalt())
 
+
 class Auth:
     """Auth class to interact with the authentication database.
     """
@@ -25,7 +26,7 @@ class Auth:
         """ return the User object. """
         try:
             self._db.find_user_by(email=email)
-        except ValueError:
+        except NoResultFound:
             new_user = self._db.add_user(email, _hash_password(password))
             return new_user
         else:
