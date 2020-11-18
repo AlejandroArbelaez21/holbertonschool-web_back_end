@@ -10,7 +10,7 @@ from user import Base, User
 
 
 class DB:
-    """ DB class """
+    """ class DB """
     def __init__(self):
         """ Constructor """
         self._engine = create_engine("sqlite:///a.db", echo=False)
@@ -32,3 +32,8 @@ class DB:
         self._session.add(new_user)
         self._session.commit()
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        """ find a user by a filter """
+        data = self._session.query(User).filter_by(**kwargs)
+        return data.one()
