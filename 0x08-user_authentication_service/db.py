@@ -37,3 +37,14 @@ class DB:
         """ find a user by a filter """
         data = self._session.query(User).filter_by(**kwargs)
         return data.one()
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ locate the user to update """
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            if key not in list(user.__dict__.keys()):
+                raise ValueError()
+            else:
+                setattr(user, key, value)
+        self._session.add(user)
+        self._session.commit()
