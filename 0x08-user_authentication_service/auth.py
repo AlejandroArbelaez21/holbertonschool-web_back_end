@@ -72,3 +72,14 @@ class Auth:
     def destroy_session(self, user_id: int) -> None:
         """ The method updates the corresponding user’s session ID to None """
         self._db.update_user(user_id, session_id=None)
+
+    def get_reset_password_token(self, email: str) -> str:
+        """ Return the toke """
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            raise ValueError
+        else:
+            uid = _generate_uuid()
+            self._db.update_user(user.id, reset_token=uid)
+            return uid
