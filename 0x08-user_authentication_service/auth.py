@@ -8,6 +8,7 @@ from user import User
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
 from uuid import uuid4
+from typing import Union
 
 
 def _hash_password(password: str) -> str:
@@ -58,7 +59,7 @@ class Auth:
         except NoResultFound:
             return None
 
-    def get_user_from_session_id(self, session_id: str) -> str:
+    def get_user_from_session_id(self, session_id: str) -> Union[str, None]:
         """ return the corresponding user """
         if session_id is None:
             return None
