@@ -62,6 +62,8 @@ class Auth:
         """ return the corresponding user """
         if session_id is None:
             return None
-        else:
+        try:
             data = self._db._session.query(User).filter_by(session_id)
-            return data.one()
+            return data
+        except NoResultFound:
+            return None
