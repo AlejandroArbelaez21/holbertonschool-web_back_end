@@ -56,7 +56,6 @@ def logout():
     abort(403)
 
 
-
 @app.route('/profile', methods=['GET'])
 def profile() -> str:
     """ The request is expected to contain a session_id cookie """
