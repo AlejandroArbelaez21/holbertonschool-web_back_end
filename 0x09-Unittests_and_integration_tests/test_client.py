@@ -26,7 +26,7 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_public_repos_url(self):
         """test_public_repos_url"""
         with patch('client.GithubOrgClient.org',
-               new_callable=PropertyMock) as mock_g:
+                   new_callable=PropertyMock) as mock_g:
             json_t = {"repos_url": "google"}
             mock_g.return_value = json_t
             git_c = GithubOrgClient("google")
