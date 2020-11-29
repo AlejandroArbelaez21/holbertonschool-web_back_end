@@ -18,6 +18,12 @@ class Config(object):
 app.config.from_object(Config)
 
 
+@app.route('/')
+def config():
+    """ config for your Flask app """
+    return render_template("2-index.html")
+
+
 @babel.localeselector
 def get_locale():
     """ Get locale from request """
