@@ -4,8 +4,12 @@ Get locale from request
 """
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+import flask_babel
 from typing import Dict
-import pytz
+from pytz import timezone
+import pytz.exceptions
+from datetime import datetime
+from babel.dates import format_date, format_datetime, format_time
 app = Flask(__name__)
 babel = Babel(app)
 
@@ -31,7 +35,7 @@ users = {
 @app.route('/')
 def config():
     """ config for your Flask app """
-    return render_template("7-index.html")
+    return render_template("index.html")
 
 
 def get_user() -> Dict:
@@ -47,6 +51,9 @@ def before_request():
     """ before request """
     g.user = get_user()
 
+    date_time_zone_now = flask_babel.to_user_timezone(datetime.now())
+    g.date = format_datetime(date_time_zone_now,
+                             locale=str(flask_babel.get_locale()))
 
 @babel.localeselector
 def get_locale():
