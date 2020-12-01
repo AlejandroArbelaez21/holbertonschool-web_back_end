@@ -3,7 +3,8 @@
 Writing strings to Redis
 """
 from redis import Redis
-from uuid import uuid4
+from uuid import uuid1
+from typing import Union
 
 
 class Cache():
@@ -13,8 +14,8 @@ class Cache():
         self._redis = Redis()
         self._redis.flushdb()
 
-    def store(self, data) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """ store the input data in Redis using the random key and return """
-        random = str(uuid4())
+        random = str(uuid1())
         self._redis.set(random, data)
         return random
