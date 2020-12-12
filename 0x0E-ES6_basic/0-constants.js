@@ -13,4 +13,3 @@ export function taskFirst() {
   
     return combination;
   }
-module.exports = taskFirst, getLast, taskNext;
